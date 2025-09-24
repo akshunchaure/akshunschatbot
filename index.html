@@ -22,7 +22,7 @@
       background: linear-gradient(90deg, #ff4d6d, #ff1a3c);
       color: #fff;
       text-align: center;
-      padding: 25px;
+      padding: 25px 20px 15px;
       font-size: 26px;
       font-weight: bold;
       letter-spacing: 1px;
@@ -36,6 +36,17 @@
       position: absolute;
       right: 20px;
       font-size: 28px;
+    }
+
+    /* NEW: Description box */
+    #description {
+      text-align: center;
+      padding: 14px 25px 10px;
+      background: rgba(255, 200, 220, 0.25);
+      backdrop-filter: blur(6px);
+      font-size: 16px;
+      line-height: 1.5;
+      border-bottom: 1px solid rgba(255,77,109,0.3);
     }
 
     /* Chat area */
@@ -133,7 +144,7 @@
       #message { font-size: 14px; padding: 10px 14px; }
     }
 
-    /* Optional floating hearts animation */
+    /* Floating hearts animation */
     .heart {
       position: absolute;
       font-size: 20px;
@@ -151,6 +162,13 @@
 </head>
 <body>
   <div id="chat-header">💖 Akshun Chaure Poetry AI 💖</div>
+
+  <!-- NEW description area -->
+  <div id="description">
+    Welcome to Akshun Chaure’s interactive poetry companion.<br>
+    Ask about love, life, emotions, or any theme—this AI draws on Akshun’s poetic world to craft heartfelt replies and share verses of inspiration.
+  </div>
+
   <div id="chatbox"></div>
   <div id="input-area">
     <input type="text" id="message" placeholder="Whisper your heart..." />
@@ -233,5 +251,3 @@
   </script>
 </body>
 </html>
-
-
