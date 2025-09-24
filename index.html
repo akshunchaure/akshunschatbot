@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mobile-Friendly AI Chatbot</title>
     <style>
-      /* Floating Chat Widget */
+      /* Chat Widget Container */
       #chat-widget {
         position: fixed;
         bottom: 10px;
@@ -22,6 +22,8 @@
         background: #fff;
         z-index: 9999;
       }
+
+      /* Header */
       #chat-header {
         background: #4a90e2;
         color: white;
@@ -30,12 +32,16 @@
         font-weight: bold;
         font-size: 16px;
       }
+
+      /* Chatbox */
       #chatbox {
         flex: 1;
         padding: 12px;
         overflow-y: auto;
         background: #f4f7f9;
       }
+
+      /* Messages */
       .message {
         margin: 6px 0;
         padding: 10px 14px;
@@ -43,7 +49,7 @@
         max-width: 75%;
         word-wrap: break-word;
         font-size: 15px;
-        white-space: pre-wrap; /* preserve line breaks */
+        white-space: pre-wrap; /* preserve line breaks and spacing */
       }
       .user {
         background: #4a90e2;
@@ -55,6 +61,8 @@
         color: #333;
         align-self: flex-start;
       }
+
+      /* Input area */
       #input-area {
         display: flex;
         border-top: 1px solid #ccc;
@@ -79,6 +87,8 @@
       #send:hover {
         background: #357abd;
       }
+
+      /* Scrollbar */
       #chatbox::-webkit-scrollbar {
         width: 6px;
       }
@@ -86,6 +96,8 @@
         background-color: rgba(0, 0, 0, 0.2);
         border-radius: 3px;
       }
+
+      /* Mobile adjustments */
       @media screen and (max-width: 480px) {
         #chat-widget {
           width: 95%;
@@ -130,7 +142,7 @@
         const msg = messageInput.value.trim();
         if (!msg) return;
 
-        // User message
+        // Show user message
         const userMsg = document.createElement("div");
         userMsg.classList.add("message", "user");
         userMsg.textContent = msg;
@@ -156,7 +168,7 @@
           const data = await response.json();
           chatbox.removeChild(typingIndicator);
 
-          // Bot message (replace \n with <br>)
+          // Bot message (replace \n with <br> for clean display)
           const botMsg = document.createElement("div");
           botMsg.classList.add("message", "bot");
           botMsg.innerHTML =
