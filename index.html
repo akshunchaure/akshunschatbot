@@ -5,107 +5,117 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Akshun Chaure Poetry AI</title>
   <style>
-    /* Romantic, dreamy theme */
+    /* Romantic Red Theme */
     body, html {
       margin: 0;
       padding: 0;
       height: 100%;
       font-family: 'Georgia', serif;
-      background: linear-gradient(135deg, #f7e6f0, #fbe6c2);
+      background: linear-gradient(135deg, #ffe0e6, #ffccd5);
       display: flex;
       flex-direction: column;
-      color: #4b2e4d;
+      color: #4b0026;
     }
 
-    /* Header with soft glow */
+    /* Header */
     #chat-header {
-      background: rgba(255, 192, 203, 0.8);
+      background: linear-gradient(90deg, #ff4d6d, #ff1a3c);
       color: #fff;
       text-align: center;
-      padding: 20px;
-      font-size: 24px;
+      padding: 25px;
+      font-size: 26px;
       font-weight: bold;
       letter-spacing: 1px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-      backdrop-filter: blur(5px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+      border-bottom-left-radius: 25px;
+      border-bottom-right-radius: 25px;
+      position: relative;
+    }
+    #chat-header::after {
+      content: '💖';
+      position: absolute;
+      right: 20px;
+      font-size: 28px;
     }
 
     /* Chat area */
     #chatbox {
       flex: 1;
-      padding: 20px;
+      padding: 25px;
       overflow-y: auto;
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      background: rgba(255,255,255,0.2);
-      backdrop-filter: blur(10px);
+      gap: 12px;
+      background: rgba(255, 230, 240, 0.3);
+      backdrop-filter: blur(12px);
       border-radius: 30px 30px 0 0;
     }
 
     /* Messages */
     .message {
       max-width: 75%;
-      padding: 14px 18px;
-      border-radius: 25px;
+      padding: 16px 20px;
+      border-radius: 30px;
       word-wrap: break-word;
       font-size: 16px;
       line-height: 1.5;
-      transition: transform 0.2s;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
 
     .message.user {
-      background: #ffb6c1;
-      color: #4b2e4d;
+      background: #ff4d6d;
+      color: #fff;
       align-self: flex-end;
       border-bottom-right-radius: 5px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 12px rgba(255,0,80,0.4);
     }
 
     .message.bot {
-      background: rgba(255,255,255,0.6);
-      color: #4b2e4d;
+      background: rgba(255, 200, 220, 0.8);
+      color: #4b0026;
       align-self: flex-start;
       border-bottom-left-radius: 5px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 12px rgba(255,0,80,0.2);
       font-style: italic;
     }
 
     /* Input area */
     #input-area {
       display: flex;
-      border-top: 1px solid rgba(255,192,203,0.5);
-      padding: 12px 20px;
-      background: rgba(255,182,193,0.3);
-      backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(255,77,109,0.5);
+      padding: 14px 22px;
+      background: rgba(255,77,109,0.2);
+      backdrop-filter: blur(12px);
     }
 
     #message {
       flex: 1;
       border: none;
-      border-radius: 20px;
-      padding: 12px 16px;
+      border-radius: 25px;
+      padding: 14px 18px;
       font-size: 16px;
       outline: none;
-      background: rgba(255,255,255,0.8);
-      color: #4b2e4d;
+      background: rgba(255, 230, 240, 0.8);
+      color: #4b0026;
     }
 
     #send {
-      background: #ff69b4;
+      background: #ff1a3c;
       border: none;
       color: #fff;
-      padding: 0 20px;
-      margin-left: 10px;
+      padding: 0 22px;
+      margin-left: 12px;
       cursor: pointer;
       font-size: 16px;
-      border-radius: 20px;
+      border-radius: 25px;
       transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(255,0,80,0.4);
     }
 
     #send:hover {
-      background: #ff1493;
-      transform: scale(1.05);
+      background: #ff0033;
+      transform: scale(1.08);
+      box-shadow: 0 6px 14px rgba(255,0,80,0.6);
     }
 
     /* Scrollbar */
@@ -113,22 +123,29 @@
       width: 6px;
     }
     #chatbox::-webkit-scrollbar-thumb {
-      background-color: rgba(255,105,180,0.5);
+      background-color: rgba(255,26,60,0.5);
       border-radius: 3px;
     }
 
     @media screen and (max-width: 480px) {
-      .message {
-        font-size: 14px;
-        max-width: 85%;
-      }
-      #send {
-        padding: 0 14px;
-      }
-      #message {
-        font-size: 14px;
-        padding: 10px 12px;
-      }
+      .message { font-size: 14px; max-width: 85%; }
+      #send { padding: 0 16px; }
+      #message { font-size: 14px; padding: 10px 14px; }
+    }
+
+    /* Optional floating hearts animation */
+    .heart {
+      position: absolute;
+      font-size: 20px;
+      animation: floatUp 4s linear infinite;
+      pointer-events: none;
+      opacity: 0.7;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(1); opacity: 0.7; }
+      50% { transform: translateY(-50px) scale(1.2); opacity: 1; }
+      100% { transform: translateY(-120px) scale(1); opacity: 0; }
     }
   </style>
 </head>
@@ -150,11 +167,8 @@
     }
 
     function decodeBase64(str) {
-      try {
-        return decodeURIComponent(escape(window.atob(str)));
-      } catch (e) {
-        return str;
-      }
+      try { return decodeURIComponent(escape(window.atob(str))); } 
+      catch (e) { return str; }
     }
 
     async function sendMessage() {
@@ -183,7 +197,6 @@
           }
         );
         const data = await response.json();
-
         chatbox.removeChild(typingIndicator);
 
         const botMsg = document.createElement("div");
@@ -195,7 +208,7 @@
         chatbox.removeChild(typingIndicator);
         const errorMsg = document.createElement("div");
         errorMsg.classList.add("message", "bot");
-        errorMsg.textContent = "💔 Connection failed, try again…";
+        errorMsg.textContent = "💔 Connection failed… try again.";
         chatbox.appendChild(errorMsg);
         scrollChat();
       }
@@ -205,6 +218,18 @@
 
     sendButton.addEventListener("click", sendMessage);
     messageInput.addEventListener("keypress", e => { if(e.key === "Enter") sendMessage(); });
+
+    // Floating hearts effect
+    setInterval(() => {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = Math.random() * window.innerWidth + 'px';
+      heart.style.fontSize = 12 + Math.random() * 18 + 'px';
+      heart.style.color = `rgba(255, ${50+Math.random()*50}, ${50+Math.random()*50}, ${0.6+Math.random()*0.4})`;
+      heart.textContent = '💖';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 4000);
+    }, 500);
   </script>
 </body>
 </html>
