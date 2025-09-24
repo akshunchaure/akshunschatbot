@@ -23,13 +23,20 @@
       color: #fff;
       text-align: center;
       padding: 25px;
-      font-size: 26px;
+      font-size: 22px;
       font-weight: bold;
       letter-spacing: 1px;
       box-shadow: 0 6px 20px rgba(0,0,0,0.3);
       border-bottom-left-radius: 25px;
       border-bottom-right-radius: 25px;
       position: relative;
+    }
+    #chat-header span {
+      display: block;
+      font-size: 14px;
+      margin-top: 6px;
+      font-weight: normal;
+      opacity: 0.9;
     }
     #chat-header::after {
       content: '💖';
@@ -134,6 +141,17 @@
       box-shadow: 0 6px 14px rgba(255,0,80,0.6);
     }
 
+    /* Footer */
+    #footer {
+      text-align: center;
+      padding: 12px;
+      font-size: 14px;
+      background: rgba(255, 77, 109, 0.2);
+      border-top: 1px solid rgba(255,77,109,0.3);
+      font-style: italic;
+      color: #4b0026;
+    }
+
     /* Scrollbar */
     #chatbox::-webkit-scrollbar {
       width: 6px;
@@ -167,21 +185,28 @@
   </style>
 </head>
 <body>
-  <div id="chat-header">💖 Akshun Chaure Poetry AI 💖</div>
+  <div id="chat-header">
+    💖 Akshun Chaure Poetry AI 💖
+    <span>Developed with love by Akshun Chaure</span>
+  </div>
 
-  <!-- 🌹 Updated Intro section -->
+  <!-- 🌹 Intro section -->
   <div id="intro">
-    Welcome to <strong>Akshun Chaure Poetry AI</strong> — a romantic companion built by <strong>Akshun Chaure</strong> himself.  
-    This AI doesn’t just chat — it breathes poetry.  
-    Ask about <strong>love</strong>, <strong>longing</strong>, <strong>heartbreak</strong>, or <strong>beauty</strong>,  
-    and it will respond with soulful verses and reflections, often weaving in <strong>Akshun’s real poetry</strong>.  
-    ✨ Type a question, a mood, or even a single word — and watch poetry bloom from Akshun’s heart.
+    Welcome to <strong>Akshun Chaure Poetry AI</strong> — your romantic companion that transforms words into art.  
+    Ask it about <strong>love</strong>, <strong>longing</strong>, <strong>heartbreak</strong>, or <strong>beauty</strong>,  
+    and it will respond with poetic reflections inspired by Akshun's real poems.  
+    ✨ Type a question, a mood, or even a single word — and watch poetry bloom.
   </div>
 
   <div id="chatbox"></div>
   <div id="input-area">
     <input type="text" id="message" placeholder="Whisper your heart..." />
     <button id="send">Send</button>
+  </div>
+
+  <!-- Footer -->
+  <div id="footer">
+    © 2025 Akshun Chaure. All rights reserved. 🌹
   </div>
 
   <script>
