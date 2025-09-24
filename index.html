@@ -1,287 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Akshun Chaure Poetry AI</title>
-  <style>
-    /* Romantic Red Theme */
-    body, html {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      font-family: 'Georgia', serif;
-      background: linear-gradient(135deg, #ffe0e6, #ffccd5);
-      display: flex;
-      flex-direction: column;
-      color: #4b0026;
-    }
+<div id="chat-header">
+  💖 Akshun Chaure Poetry AI 💖
+  <span>Developed by Akshun Chaure</span>
+</div>
 
-    /* Header */
-    #chat-header {
-      background: linear-gradient(90deg, #ff4d6d, #ff1a3c);
-      color: #fff;
-      text-align: center;
-      padding: 25px;
-      font-size: 22px;
-      font-weight: bold;
-      letter-spacing: 1px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-      border-bottom-left-radius: 25px;
-      border-bottom-right-radius: 25px;
-      position: relative;
-    }
-    #chat-header span {
-      display: block;
-      font-size: 14px;
-      margin-top: 6px;
-      font-weight: normal;
-      opacity: 0.9;
-    }
-    #chat-header::after {
-      content: '💖';
-      position: absolute;
-      right: 20px;
-      font-size: 28px;
-    }
-
-    /* Intro section */
-    #intro {
-      padding: 20px 30px;
-      text-align: center;
-      background: rgba(255, 230, 240, 0.6);
-      font-size: 17px;
-      line-height: 1.6;
-      font-style: italic;
-      border-bottom: 1px solid rgba(255,77,109,0.3);
-      box-shadow: 0 4px 10px rgba(255,0,80,0.15);
-    }
-    #intro strong {
-      color: #ff1a3c;
-      font-style: normal;
-    }
-
-    /* Chat area */
-    #chatbox {
-      flex: 1;
-      padding: 25px;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      background: rgba(255, 230, 240, 0.3);
-      backdrop-filter: blur(12px);
-      border-radius: 30px 30px 0 0;
-    }
-
-    /* Messages */
-    .message {
-      max-width: 75%;
-      padding: 16px 20px;
-      border-radius: 30px;
-      word-wrap: break-word;
-      font-size: 16px;
-      line-height: 1.5;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .message.user {
-      background: #ff4d6d;
-      color: #fff;
-      align-self: flex-end;
-      border-bottom-right-radius: 5px;
-      box-shadow: 0 4px 12px rgba(255,0,80,0.4);
-    }
-
-    .message.bot {
-      background: rgba(255, 200, 220, 0.8);
-      color: #4b0026;
-      align-self: flex-start;
-      border-bottom-left-radius: 5px;
-      box-shadow: 0 4px 12px rgba(255,0,80,0.2);
-      font-style: italic;
-    }
-
-    /* Input area */
-    #input-area {
-      display: flex;
-      border-top: 1px solid rgba(255,77,109,0.5);
-      padding: 14px 22px;
-      background: rgba(255,77,109,0.2);
-      backdrop-filter: blur(12px);
-    }
-
-    #message {
-      flex: 1;
-      border: none;
-      border-radius: 25px;
-      padding: 14px 18px;
-      font-size: 16px;
-      outline: none;
-      background: rgba(255, 230, 240, 0.8);
-      color: #4b0026;
-    }
-
-    #send {
-      background: #ff1a3c;
-      border: none;
-      color: #fff;
-      padding: 0 22px;
-      margin-left: 12px;
-      cursor: pointer;
-      font-size: 16px;
-      border-radius: 25px;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 10px rgba(255,0,80,0.4);
-    }
-
-    #send:hover {
-      background: #ff0033;
-      transform: scale(1.08);
-      box-shadow: 0 6px 14px rgba(255,0,80,0.6);
-    }
-
-    /* Footer */
-    #footer {
-      text-align: center;
-      padding: 12px;
-      font-size: 14px;
-      background: rgba(255, 77, 109, 0.2);
-      border-top: 1px solid rgba(255,77,109,0.3);
-      font-style: italic;
-      color: #4b0026;
-    }
-
-    /* Scrollbar */
-    #chatbox::-webkit-scrollbar {
-      width: 6px;
-    }
-    #chatbox::-webkit-scrollbar-thumb {
-      background-color: rgba(255,26,60,0.5);
-      border-radius: 3px;
-    }
-
-    @media screen and (max-width: 480px) {
-      .message { font-size: 14px; max-width: 85%; }
-      #send { padding: 0 16px; }
-      #message { font-size: 14px; padding: 10px 14px; }
-      #intro { font-size: 15px; padding: 15px 20px; }
-    }
-
-    /* Floating hearts animation */
-    .heart {
-      position: absolute;
-      font-size: 20px;
-      animation: floatUp 4s linear infinite;
-      pointer-events: none;
-      opacity: 0.7;
-    }
-
-    @keyframes floatUp {
-      0% { transform: translateY(0) scale(1); opacity: 0.7; }
-      50% { transform: translateY(-50px) scale(1.2); opacity: 1; }
-      100% { transform: translateY(-120px) scale(1); opacity: 0; }
-    }
-  </style>
-</head>
-<body>
-  <div id="chat-header">
-    💖 Akshun Chaure Poetry AI 💖
-    <span>Developed with love by Akshun Chaure</span>
-  </div>
-
-  <!-- 🌹 Intro section -->
-  <div id="intro">
-    Welcome to <strong>Akshun Chaure Poetry AI</strong> — your romantic companion that transforms words into art.  
-    Ask it about <strong>love</strong>, <strong>longing</strong>, <strong>heartbreak</strong>, or <strong>beauty</strong>,  
-    and it will respond with poetic reflections inspired by Akshun's real poems.  
-    ✨ Type a question, a mood, or even a single word — and watch poetry bloom.
-  </div>
-
-  <div id="chatbox"></div>
-  <div id="input-area">
-    <input type="text" id="message" placeholder="Whisper your heart..." />
-    <button id="send">Send</button>
-  </div>
-
-  <!-- Footer -->
-  <div id="footer">
-    © 2025 Akshun Chaure. All rights reserved. 🌹
-  </div>
-
-  <script>
-    const chatbox = document.getElementById("chatbox");
-    const messageInput = document.getElementById("message");
-    const sendButton = document.getElementById("send");
-
-    function scrollChat() {
-      chatbox.scrollTop = chatbox.scrollHeight;
-    }
-
-    function decodeBase64(str) {
-      try { return decodeURIComponent(escape(window.atob(str))); } 
-      catch (e) { return str; }
-    }
-
-    async function sendMessage() {
-      const msg = messageInput.value.trim();
-      if (!msg) return;
-
-      const userMsg = document.createElement("div");
-      userMsg.classList.add("message", "user");
-      userMsg.textContent = msg;
-      chatbox.appendChild(userMsg);
-      scrollChat();
-
-      const typingIndicator = document.createElement("div");
-      typingIndicator.classList.add("message", "bot");
-      typingIndicator.textContent = "💌 Akshun is composing…";
-      chatbox.appendChild(typingIndicator);
-      scrollChat();
-
-      try {
-        const response = await fetch(
-          "https://n8n.srv1004517.hstgr.cloud/webhook/a51df796-aed1-4d04-bdda-9d6f6e0725a8",
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ message: msg }),
-          }
-        );
-        const data = await response.json();
-        chatbox.removeChild(typingIndicator);
-
-        const botMsg = document.createElement("div");
-        botMsg.classList.add("message", "bot");
-        botMsg.innerHTML = decodeBase64(data.response || "").replace(/\n/g, "<br>");
-        chatbox.appendChild(botMsg);
-        scrollChat();
-      } catch (error) {
-        chatbox.removeChild(typingIndicator);
-        const errorMsg = document.createElement("div");
-        errorMsg.classList.add("message", "bot");
-        errorMsg.textContent = "💔 Connection failed… try again.";
-        chatbox.appendChild(errorMsg);
-        scrollChat();
-      }
-
-      messageInput.value = "";
-    }
-
-    sendButton.addEventListener("click", sendMessage);
-    messageInput.addEventListener("keypress", e => { if(e.key === "Enter") sendMessage(); });
-
-    // Floating hearts effect
-    setInterval(() => {
-      const heart = document.createElement('div');
-      heart.className = 'heart';
-      heart.style.left = Math.random() * window.innerWidth + 'px';
-      heart.style.fontSize = 12 + Math.random() * 18 + 'px';
-      heart.style.color = `rgba(255, ${50+Math.random()*50}, ${50+Math.random()*50}, ${0.6+Math.random()*0.4})`;
-      heart.textContent = '💖';
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 4000);
-    }, 500);
-  </script>
-</body>
-</html>
+<style>
+  #chat-header {
+    background: linear-gradient(90deg, #ff4d6d, #ff1a3c);
+    color: #fff;
+    text-align: center;
+    padding: 12px 15px; /* reduced padding */
+    font-size: 18px; /* smaller main title */
+    font-weight: bold;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    position: relative;
+  }
+  #chat-header span {
+    display: block;
+    font-size: 12px; /* smaller subtitle */
+    margin-top: 2px; /* tighter spacing */
+    font-weight: normal;
+    opacity: 0.9;
+  }
+  #chat-header::after {
+    content: '💖';
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+  }
+</style>
